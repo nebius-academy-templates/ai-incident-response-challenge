@@ -74,6 +74,13 @@ services:
     ports:
       - "3100:3100"
 
+  tempo-init:
+    image: grafana/tempo:2.5.0
+    user: root
+    entrypoint: ["chown", "-R", "10001:10001", "/tmp/tempo"]
+    volumes:
+      - tempo_data:/tmp/tempo
+
   tempo:
     image: grafana/tempo:2.5.0
     command: ["-config.file=/etc/tempo.yaml"]
@@ -82,6 +89,9 @@ services:
       - tempo_data:/tmp/tempo
     ports:
       - "3200:3200"
+    depends_on:
+      tempo-init:
+        condition: service_completed_successfully
 
   grafana:
     image: grafana/grafana:11.2.0
