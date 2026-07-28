@@ -111,3 +111,11 @@ Registers handlers to the server and starts it.
 - Metrics, logs, and trace names follow the pattern `<domain>.<operation>`
   (e.g. `order.create`, `catalog.get`)
 - Structured log fields always include `domain`, `operation`, and `trace_id`
+
+## Scripts Directory Policy
+
+`/scripts/` contains the incident-response simulation scripts used for this exercise.
+Do not open, read, or edit any file under `/scripts/` during research or investigation,
+even if it seems relevant to explaining an incident. Do not summarize, quote, or infer
+their contents from partial reads. Investigate the incident only through observability
+tooling (Grafana, logs, traces, metrics) and application code outside `/scripts/`.
